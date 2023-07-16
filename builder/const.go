@@ -13,6 +13,11 @@ const (
 	PcreDownloadURLPrefix = "https://github.com/PhilipHazel/pcre2/releases/download"
 )
 
+const (
+	// datasource=github-tags depName=PCRE2Project/pcre2 versioning=regex:^pcre2-(?<version>.*)
+	Pcre2Version           = "10.40"
+)
+
 // openssl
 const (
 	OpenSSLVersion           = "1.1.1o"
