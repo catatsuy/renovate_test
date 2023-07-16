@@ -2,13 +2,14 @@ package builder
 
 // nginx
 const (
+	// datasource=docker depName=nginx versioning=docker
 	NginxVersion           = "1.22.0"
 	NginxDownloadURLPrefix = "https://nginx.org/download"
 )
 
 // pcre
 const (
-	// datasource=github-tags depName=PCRE2Project/pcre2 versioning=regex:^(?<compatibility>.*)-(?<major>\\d+)(\\.(?<minor>\\d+))?(\\.(?<patch>\\d+))?$
+	// datasource=github-tags depName=PCRE2Project/pcre2 versioning=^(?<compatibility>.*)-(?<major>\\d+)(\\.(?<minor>\\d+))?(\\.(?<patch>\\d+))?$
 	PcreVersion           = "10.40"
 	PcreDownloadURLPrefix = "https://github.com/PhilipHazel/pcre2/releases/download"
 )
