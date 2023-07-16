@@ -25,6 +25,9 @@ const (
 	LibreSSLDownloadURLPrefix = "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL"
 )
 
+// datasource=golang-version depName=golang
+ "1.17.1"
+
 // zlib
 const (
 	// datasource=github-tags depName=madler/zlib
