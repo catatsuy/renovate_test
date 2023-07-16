@@ -20,10 +20,12 @@ const (
 
 // libressl
 const (
-	// datasource=github-tags depName=libressl/portable versioning=^v?(?<version>\\d+\\.\\d+\\.\\d+)$
 	LibreSSLVersion           = "3.5.3"
 	LibreSSLDownloadURLPrefix = "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL"
 )
+
+// datasource=github-tags depName=libressl/portable versioning=^v?(?<version>\\d+\\.\\d+\\.\\d+)$
+ "3.5.3"
 
 // datasource=golang-version depName=golang
  "1.17.1"
