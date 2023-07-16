@@ -25,6 +25,9 @@ const (
 )
 
 // datasource=github-tags depName=libressl/portable versioning=^v?(?<version>\\d+\\.\\d+\\.\\d+)$
+ "v3.5.3"
+
+// datasource=github-tags depName=libressl/portable
  "3.5.3"
 
 // datasource=golang-version depName=golang
