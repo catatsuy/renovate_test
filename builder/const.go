@@ -9,7 +9,6 @@ const (
 
 // pcre
 const (
-	// datasource=github-tags depName=PCRE2Project/pcre2 versioning=^(?<compatibility>.*)-(?<major>\\d+)(\\.(?<minor>\\d+))?(\\.(?<patch>\\d+))?$
 	PcreVersion           = "10.40"
 	PcreDownloadURLPrefix = "https://github.com/PhilipHazel/pcre2/releases/download"
 )

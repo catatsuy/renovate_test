@@ -20,6 +20,15 @@
         "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.* \"(?<currentValue>[0-9.]*)\""
       ],
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
+    },
+    {
+      "fileMatch": [
+        "builder/const.go"
+      ],
+      "extractVersionTemplate": "^pcre2-(?<version>.*)$",
+      "matchStrings": [
+        "PcreVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
+      ]
     }
   ],
   "postUpdateOptions": [
