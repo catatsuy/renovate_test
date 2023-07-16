@@ -26,8 +26,8 @@
         "builder/const.go"
       ],
       "extractVersionTemplate": "^pcre2-(?<version>.*)$",
-      "datasource": "github-tags",
-      "depName": "PCRE2Project/pcre2",
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "PCRE2Project/pcre2",
       "matchStrings": [
         "PcreVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
       ]
