@@ -5,6 +5,14 @@
   "regexManagers": [
     {
       "fileMatch": [
+        "04_xbuild.yml"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?-install (?<currentValue>[0-9.]*).*\n"
+      ]
+    },
+    {
+      "fileMatch": [
         "builder/const.go"
       ],
       "matchStrings": [
