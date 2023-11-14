@@ -34,7 +34,7 @@ const (
  "v3.5.3"
 
 // datasource=github-tags depName=libressl/portable
- "3.5.3"
+ "3.8.2"
 
 // datasource=golang-version depName=golang
  "1.17.1"
