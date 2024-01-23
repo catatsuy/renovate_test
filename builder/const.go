@@ -41,8 +41,7 @@ const (
 
 // zlib
 const (
-	// datasource=github-tags depName=madler/zlib
-	ZlibVersion           = "1.2.12"
+	ZlibVersion           = "1.3"
 	ZlibDownloadURLPrefix = "https://zlib.net"
 )
 
