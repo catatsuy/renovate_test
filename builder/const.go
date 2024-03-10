@@ -30,12 +30,6 @@ const (
 	LibreSSLDownloadURLPrefix = "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL"
 )
 
-// datasource=github-tags depName=libressl/portable
- "v3.5.3"
-
-// datasource=github-tags depName=libressl/portable
- "3.5.3"
-
 // datasource=golang-version depName=golang
  "1.17.1"
 
