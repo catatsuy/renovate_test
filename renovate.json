@@ -73,7 +73,7 @@
         "mysql"
       ],
       "matchPackagePatterns": [
-        "^lts"
+        "bookworm"
       ],
       "allowedVersions": "/^[0-9]+\\.[0-9]+$/"
     }
