@@ -63,7 +63,7 @@
       "matchPackageNames": [
         "nginx"
       ],
-      "versioning": "regex:^[0-9]+\\.[0-9]*[02468]$"
+      "versioning": "regex:^(?<major>[0-9]+)\\.(?<minor>[0-9]*[02468])(?<patch>\\d*)$"
     }
   ],
   "postUpdateOptions": [
