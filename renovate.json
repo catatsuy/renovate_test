@@ -72,10 +72,17 @@
       "matchPackageNames": [
         "mysql"
       ],
-      "matchPackagePatterns": [
-        "bookworm$"
+      "allowedVersions": "/^[0-9]+\\.[0-9]+$/",
+      "versioning": "loose",
+      "updateTypes": [
+        "major",
+        "minor"
       ],
-      "allowedVersions": "/^[0-9]+\\.[0-9]+$/"
+      "extractVersion": {
+        "type": "docker",
+        "path": "library/mysql",
+        "tagPattern": "^lts$"
+      }
     }
   ],
   "postUpdateOptions": [
