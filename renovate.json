@@ -78,11 +78,7 @@
         "major",
         "minor"
       ],
-      "extractVersion": {
-        "type": "docker",
-        "path": "library/mysql",
-        "tagPattern": "^lts$"
-      }
+      "extractVersion": "^lts$"
     }
   ],
   "postUpdateOptions": [
