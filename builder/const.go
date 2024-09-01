@@ -62,3 +62,7 @@ const (
 	ComponentZlib
 	ComponentMax
 )
+
+func main() {
+	// aaaa
+}
