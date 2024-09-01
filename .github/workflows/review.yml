@@ -9,6 +9,7 @@ jobs:
     permissions:
       pull-requests: write
       issues: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -23,10 +24,9 @@ jobs:
 
       - name: Run Review
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Use Secrets to set the API key
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          git diff origin/main...HEAD | bento -review > review.txt
-          REVIEW_CONTENT=$(cat review.txt)
+          REVIEW_CONTENT=$(git diff origin/main...HEAD | bento -review)
           echo "REVIEW_CONTENT<<EOF" >> $GITHUB_ENV
           echo "$REVIEW_CONTENT" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
@@ -35,11 +35,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            --jq '.[] | select(.user.login == "github-actions[bot]") | select(.body | contains("Automatic Review")) | .id' \
-            > comment_id.txt
-          if [ -s comment_id.txt ]; then
-            echo "comment_id=$(cat comment_id.txt)" >> $GITHUB_ENV
+          comment_id=$(gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+            --jq '.[] | select(.user.login == "github-actions[bot]") | select(.body | contains("Automatic Review")) | .id')
+          if [ -n "$comment_id" ]; then
+            echo "comment_id=$comment_id" >> $GITHUB_ENV
           fi
 
       - name: Post Review as a Comment
