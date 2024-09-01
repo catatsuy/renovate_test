@@ -51,11 +51,11 @@ jobs:
             gh api \
               -X PATCH \
               repos/${{ github.repository }}/issues/comments/${{ env.comment_id }} \
-              -f body="### Automatic Review\n${{ env.REVIEW_CONTENT }}"
+              -f body="### Automatic Review\n\n${{ env.REVIEW_CONTENT }}"
           else
             # Create a new comment
             gh api \
               -X POST \
               repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-              -f body="### Automatic Review\n${{ env.REVIEW_CONTENT }}"
+              -f body="### Automatic Review\n\n${{ env.REVIEW_CONTENT }}"
           fi
