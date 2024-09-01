@@ -36,7 +36,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
-            --jq '.[] | select(.user.login == "github-actions[bot]" and .body | contains("Automatic Review")) | .id' \
+            --jq '.[] | select(.user.login == "github-actions[bot]") | select(.body | contains("Automatic Review")) | .id' \
             > comment_id.txt
           if [ -s comment_id.txt ]; then
             echo "comment_id=$(cat comment_id.txt)" >> $GITHUB_ENV
