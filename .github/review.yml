@@ -1,0 +1,41 @@
+name: Auto Review
+
+on:
+  pull_request:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Download bento
+        run: |
+          curl -sL https://github.com/catatsuy/bento/releases/latest/download/bento-linux-amd64.tar.gz | tar xz -C /tmp
+          sudo mv /tmp/purl /usr/local/bin/
+
+      - name: Run Review
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}  # Use Secrets to set the API key
+        run: |
+          git diff HEAD^1 HEAD > diff.patch
+          bento -review -file diff.patch > review.txt
+
+      - name: Post Review as a Comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          issue-number: ${{ github.event.pull_request.number || github.run_id }}
+          body: |
+            ### Automatic Review
+            ```diff
+            $(cat review.txt)
+            ```
+          edit-mode: replace
+          comment-author: ${{ github.actor }}
