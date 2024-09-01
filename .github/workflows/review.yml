@@ -1,0 +1,50 @@
+name: Auto Review
+
+on:
+  pull_request:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download bento
+        run: |
+          curl -sL https://github.com/catatsuy/bento/releases/latest/download/bento-linux-amd64.tar.gz | tar xz -C /tmp
+          sudo mv /tmp/bento /usr/local/bin/
+
+      - name: Run Review
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} # Use Secrets to set the API key
+        run: |
+          git diff origin/main...HEAD | bento -review > review.txt
+          REVIEW_CONTENT=$(cat review.txt)
+          echo "REVIEW_CONTENT<<EOF" >> $GITHUB_ENV
+          echo "$REVIEW_CONTENT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v3
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: Automatic Review
+
+      - name: Post Review as a Comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ### Automatic Review
+            ${{ env.REVIEW_CONTENT }}
+          edit-mode: replace
