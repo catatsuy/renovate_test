@@ -53,6 +53,16 @@
       "matchStrings": [
         "PcreVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
       ]
+    },
+    {
+      "fileMatch": [
+        "Formula/curl-http3-libressl.rb"
+      ],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "libressl/portable",
+      "matchStrings": [
+        "url \"https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-(?<currentValue>[0-9.]*).tar.gz"
+      ]
     }
   ],
   "packageRules": [
@@ -64,6 +74,15 @@
         "nginx"
       ],
       "versioning": "regex:^(?<major>[0-9]+)\\.(?<minor>[0-9]*[02468])(?<patch>\\d*)$"
+    },
+    {
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "matchPackageNames": [
+        "libressl/portable"
+      ],
+      "versioning": "^v(?<version>[0-9]*.[0-9]*.[0-9]*)$"
     }
   ],
   "postUpdateOptions": [
