@@ -1,9 +1,10 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
-  "regexManagers": [
+  "customManagers": [
     {
+      "customType": "regex",
       "fileMatch": [
         "04_xbuild.yml"
       ],
@@ -12,6 +13,7 @@
       ]
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "builder/const.go"
       ],
@@ -22,6 +24,7 @@
       "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "builder/const.go"
       ],
@@ -33,6 +36,7 @@
       ]
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "builder/const.go"
       ],
@@ -44,6 +48,7 @@
       ]
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "builder/const.go"
       ],
@@ -55,6 +60,7 @@
       ]
     },
     {
+      "customType": "regex",
       "fileMatch": [
         "Formula/curl-http3-libressl.rb"
       ],
