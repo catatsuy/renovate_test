@@ -12,7 +12,7 @@ class CurlHttp3Libressl < Formula
   depends_on "libtool" => :build
 
   resource "libressl" do
-    url "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.0.0.tar.gz"
+    url "https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.9.2.tar.gz"
     sha256 "4d841955f0acc3dfc71d0e3dd35f283af461222350e26843fea9731c0246a1e4"
   end
 
