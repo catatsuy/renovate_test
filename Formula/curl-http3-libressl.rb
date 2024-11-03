@@ -19,7 +19,7 @@ class CurlHttp3Libressl < Formula
   resource "nghttp3" do
     url "https://github.com/ngtcp2/nghttp3.git",
         using: :git,
-        tag: "v1.6.0",
+        tag: "v1.5.0",
         revision: "e79890583f1ba8bb4d58d7456043a7e65205b34d"
   end
 

@@ -83,6 +83,15 @@
         "libressl/portable"
       ],
       "versioning": "^v(?<version>[0-9]*.[0-9]*.[0-9]*)$"
+    },
+    {
+      "matchDatasources": [
+        "github-tags"
+      ],
+      "matchPackageNames": [
+        "ngtcp2/nghttp3"
+      ],
+      "versioning": "^v(?<version>[0-9]*.[0-9]*.[0-9]*)$"
     }
   ],
   "postUpdateOptions": [
