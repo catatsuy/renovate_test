@@ -1,114 +1,40 @@
 {
   "extends": [
-    "config:recommended"
+    "config:base"
   ],
-  "customManagers": [
+  "regexManagers": [
     {
-      "customType": "regex",
       "fileMatch": [
-        "04_xbuild.yml"
+        ".github/workflows/go.yml"
       ],
+      "datasourceTemplate": "golang-version",
+      "depNameTemplate": "golang",
       "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.*?-install v?(?<currentValue>[0-9.]*).*\n"
+        "go-version: (?<currentValue>[0-9]*.[0-9]*.[0-9]*)"
       ]
     },
     {
-      "customType": "regex",
-      "fileMatch": [
-        "builder/const.go"
-      ],
-      "extractVersionTemplate": "^v(?<version>.*)$",
-      "matchStrings": [
-        "datasource=(?<datasource>.*?) depName=(?<depName>.*?)( versioning=(?<versioning>.*?))?\n.* \"(?<currentValue>[0-9.]*)\""
-      ],
-      "versioningTemplate": "{{#if versioning}}{{versioning}}{{else}}semver{{/if}}"
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "builder/const.go"
-      ],
-      "extractVersionTemplate": "^v(?<version>.*)$",
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "madler/zlib",
-      "matchStrings": [
-        "ZlibVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
-      ]
-    },
-    {
-      "customType": "regex",
       "fileMatch": [
         ".github/workflows/security.yml"
       ],
-      "datasourceTemplate": "go-version",
-      "depNameTemplate": "go",
+      "datasourceTemplate": "golang-version",
+      "depNameTemplate": "golang-security",
       "matchStrings": [
         "go-version-input: (?<currentValue>[0-9]*.[0-9]*.[0-9]*)"
-      ]
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "builder/const.go"
-      ],
-      "extractVersionTemplate": "^v(?<version>[0-9]*.[0-9]*.[1-9]+[0-9]*)$",
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "libressl/portable",
-      "matchStrings": [
-        "LibreSSLVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
-      ]
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "builder/const.go"
-      ],
-      "extractVersionTemplate": "^pcre2-(?<version>.*)$",
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "PCRE2Project/pcre2",
-      "matchStrings": [
-        "PcreVersion\\s+=\\s\"(?<currentValue>[0-9.]*)\""
-      ]
-    },
-    {
-      "customType": "regex",
-      "fileMatch": [
-        "Formula/curl-http3-libressl.rb"
-      ],
-      "datasourceTemplate": "github-tags",
-      "depNameTemplate": "libressl/portable",
-      "matchStrings": [
-        "url \"https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-(?<currentValue>[0-9.]*).tar.gz"
       ]
     }
   ],
   "packageRules": [
     {
-      "matchDatasources": [
-        "docker"
-      ],
-      "matchPackageNames": [
-        "nginx"
-      ],
-      "versioning": "regex:^(?<major>[0-9]+)\\.(?<minor>[0-9]*[02468])(?<patch>\\d*)$"
+      "matchDepNames": [
+        "golang"
+      ]
     },
     {
-      "matchDatasources": [
-        "github-tags"
+      "matchDepNames": [
+        "golang-security"
       ],
-      "matchPackageNames": [
-        "libressl/portable"
-      ],
-      "versioning": "^v(?<version>[0-9]*.[0-9]*.[0-9]*)$"
-    },
-    {
-      "matchDatasources": [
-        "github-tags"
-      ],
-      "matchPackageNames": [
-        "ngtcp2/nghttp3"
-      ],
-      "versioning": "^v(?<version>[0-9]*.[0-9]*.[0-9]*)$"
+      "groupName": "go-version-security"
     }
   ],
   "postUpdateOptions": [
